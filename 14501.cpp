@@ -14,15 +14,14 @@ int max(int a,int b){
 int main(){
 	int N;
 	scanf("%d",&N);
-	int T[N+1]={0,};
-	int P[N+1]={0,};
-	int dp[N+1]={0,};
+	int T[17]={0,};//문제에서 주어진 공간이 작다면 되도록 크기를 적어주도록하자.
+	int P[17]={0,};
+	int dp[17]={0,};
 	
 	for(int i=1;i<=N;i++){
 		scanf("%d %d",&T[i],&P[i]);
 	}
 	
-	//for(int i=1;i<=N;i++) printf("%d\n",T[i]);
 	int result=0;
 	for(int i=1;i<=N;i++){
 		//i번째날에 일을 할경우. 
