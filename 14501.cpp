@@ -5,7 +5,7 @@ int max(int a,int b){
 	if(a>=b) return a;
 	else return b;
 }
-//´õ°£°áÇÑ max Ç¥Çö
+//ë”ê°„ê²°í•œ max í‘œí˜„
 /*
 int max(int a,int b){
 	return a>b?a:b;
@@ -14,23 +14,22 @@ int max(int a,int b){
 int main(){
 	int N;
 	scanf("%d",&N);
-	int T[N+1]={0,};
-	int P[N+1]={0,};
-	int dp[N+1]={0,};
+	int T[17]={0,};//ë¬¸ì œì—ì„œ ì£¼ì–´ì§„ ê³µê°„ì´ ì‘ë‹¤ë©´ ë˜ë„ë¡ í¬ê¸°ë¥¼ ì ì–´ì£¼ë„ë¡í•˜ì.
+	int P[17]={0,};
+	int dp[17]={0,};
 	
 	for(int i=1;i<=N;i++){
 		scanf("%d %d",&T[i],&P[i]);
 	}
 	
-	//for(int i=1;i<=N;i++) printf("%d\n",T[i]);
 	int result=0;
 	for(int i=1;i<=N;i++){
-		//i¹øÂ°³¯¿¡ ÀÏÀ» ÇÒ°æ¿ì. 
-		if(i+T[i]<=N+1){//N+1¹øÂ° ³¯±îÁö ºñ±³ÇÔ. 
+		//ië²ˆì§¸ë‚ ì— ì¼ì„ í• ê²½ìš°. 
+		if(i+T[i]<=N+1){//N+1ë²ˆì§¸ ë‚ ê¹Œì§€ ë¹„êµí•¨. 
 			dp[i+T[i]]=max(dp[i+T[i]],dp[i]+P[i]);
 			result=max(result,dp[i+T[i]]);
 		}
-		//i¹øÂ°³¯¿¡ ÀÏÀ» ÇÏÁö ¾ÊÀ»°æ¿ì. 
+		//ië²ˆì§¸ë‚ ì— ì¼ì„ í•˜ì§€ ì•Šì„ê²½ìš°. 
 		dp[i+1]=max(dp[i+1],dp[i]);
 		result=max(result,dp[i+1]);
 	}
@@ -39,3 +38,5 @@ int main(){
 	
 	return 0;
 }
+//ì›ë˜ O(N^2)ì¸ ì½”ë“œë¥¼ ì‘ì„±í•˜ì˜€ìœ¼ë‚˜, https://velog.io/@skyepodium/%EB%B0%B1%EC%A4%80-14501-%ED%87%B4%EC%82%AC-exjyfr5vgjë¥¼ ì°¸ê³ í•˜ì—¬ O(N)ì¸ ì½”ë“œë¡œ ìˆ˜ì •í•˜ì˜€ë‹¤.
+//ë‚˜ì¤‘ì— ë‹¤ì‹œí’€ì–´ë´ì•¼ì§€..
