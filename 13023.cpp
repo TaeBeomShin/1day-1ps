@@ -1,41 +1,42 @@
 #include<bits/stdc++.h>
-#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0)
 using namespace std;
 
+vector <int> v[2001];
 bool visited[2001];
-vector<int> relation[2001];
-int n,m; bool answer=false;
+bool answer=false;
 
-void dfs(int idx, int cnt){
-	if(cnt==4){
+void dfs(int index,int count){
+	if(count==4){
 		answer=true;
 		return;
 	}
-	visited[idx]=true;
-	for(int i=0;i<relation[idx].size();i++){
-		int next=relation[idx][i];
-		if(visited[next]==false){
-			dfs(next,cnt+1);
+	
+	visited[index]=true;
+	for(int i=0;i<v[index].size();i++){
+		int next=v[index][i];
+		if(!visited[next]){
+			visited[next]=true;
+			dfs(next,count+1);
+			if(answer) break;
 		}
-		if(answer) return;
 	}
-	visited[idx]=false;
-} 
+	visited[index]=false;
+}
 int main(){
-	fastio;
-	cin>>n>>m;
+	int n,m; cin>>n>>m;
+	
 	while(m--){
-		int p1,p2;
-		cin>>p1>>p2;
-		relation[p1].push_back(p2);
-		relation[p2].push_back(p1);
+		int a,b;cin>>a>>b;
+		v[a].push_back(b);
+		v[b].push_back(a);
 	}
 	
 	for(int i=0;i<n;i++){
-		memset(visited,false,sizeof(visited));
+		memset(visited,false,n);
 		dfs(i,0);
 		if(answer) break;
-	}	
+	}
+	
 	cout<<answer;
-
 }
+
