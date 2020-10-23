@@ -5,17 +5,14 @@ using namespace std;
 
 int main(){
 	fastio;
-	int n,m;cin>>n>>m;
-	set <string> v1,v2,intersect;
-	std::vector<string>::iterator it, ls; 
-	string temp;
+	int n,m;string temp;cin>>n>>m;
+	set <string> v1,v2; vector<string> v;
 	
 	while(n--&&cin>>temp) v1.insert(temp);
 	while(m--&&cin>>temp) v2.insert(temp); 
+	set_intersection(v1.begin(),v1.end(),v2.begin(),v2.end(),back_inserter(v));
 	
-	set_intersection(v1.begin(),v1.end(),v2.begin(),v2.end(),inserter(intersect,intersect.begin()));
-	
-	 for (it = intersect.begin(); it != intersect.end(); ++it) 
-        cout <<*it<<"\n";
+	cout<<v.size()<<"\n";
+	for(auto& name : v) cout<<name<<"\n";
 }
 
