@@ -6,7 +6,7 @@ while(True):
         break
     if("WRITE" in sentence):
         a,b=sentence[6:].split(" TO ")
-        if(b in r or (a in to and b in w) or a in to or b in to or (a in w and b in to)):
+        if(b in r or b in w or a in to or b in to or (a in w and b in to)):
             w, r, to = [], [], []
             print("WAIT")
         w.append(a)
