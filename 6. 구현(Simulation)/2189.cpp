@@ -1,7 +1,10 @@
 #include<bits/stdc++.h>
 #define fastio ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0)
 using namespace std;
-
+/*
+	단순구현문제 문제에서 각 Square별로 작성한 규칙에 따라 유효성 체크만 해주면됨.
+	자료구조를 적절히 쓰면 좀 더 쉽게 구현 가능할 듯함. 
+*/
 void printans(int count,int magic){
 	if(magic==1){
 		printf("Square %d: Not a Magick Square\n",count);
