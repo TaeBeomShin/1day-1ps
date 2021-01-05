@@ -5,8 +5,7 @@ int c,n,m,p;
 float m1,p1;
 int main(){	
 	while(1){
-		int dp[10001]={0,};
-		
+		int dp[10001]={0,};	
 		cin>>n>>m1;
 		if(n==0) break;
 		m=100*m1;	
