@@ -1,23 +1,22 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int A[1001];
-int dp[1001];
-
 int main(){
 	int n;cin>>n;
-	for(int i=0;i<n;i++) cin>>A[i];
+	int arr[n+1]={0,},dp[n+1]={0,};
+	for(int i=1;i<=n;i++) cin>>arr[i];
 	
-	for(int i=0;i<n;i++){
+	for(int i=1;i<=n;i++){
 		dp[i]=1;
-		for(int j=0;j<=i;j++){
-			if(A[i]<A[j]) dp[i]=max(dp[i],dp[j]+1);
+		for(int j=1;j<=i;j++){
+			if(arr[i]<arr[j]) dp[i]=max(dp[i],dp[j]+1);
 		}
 	}
 	
-	int max=0;
-	for(int i=0;i<n;i++){
-		if(dp[i]>max) max=dp[i];
-	}
-	cout<<max;
+	int maxn=0;
+	
+	for(int i=1;i<=n;i++)
+		maxn=max(maxn,dp[i]);
+		
+	cout<<maxn;
 } 
