@@ -1,32 +1,31 @@
 #include<bits/stdc++.h>
-using namespace std;
+#define P pair<int,int>
+using namespace std; 
 
 int main(){
 	int n,m;cin>>n>>m;
-	vector<pair<int,int> > v(n);
+	vector<P> adj[n+1];
+	int dist[n+1]={0,};
+	fill(dist,dist+n+1,1e9);
+	bool visited[n+1]={0,};
 	for(int i=0;i<m;i++){
-		int a,b,c; cin>>a>>b>>c;
-		v[a-1].push_back({b-1,c});
+		int curr,next,d;cin>>curr>>next>>d;
+		adj[curr].push_back({next,d});
 	}
 	int start,end;cin>>start>>end;
-	start-=1;end-=1;
-	int dist[n];
-	fill(dist,dist+n,1e9);
-	bool visited[n]={0};
-	priority_queue<pair<int,int> >,vector<pair<int,int> >,greater<pair<int,int> >PQ;
-	
+	priority_queue<P,vector<P>,greater<P>> PQ;
 	dist[start]=0;
 	PQ.push({0,start});
+	
 	while(!PQ.empty()){
 		int curr;
 		do{
-			curr=PQ.top().second;
-			PQ.pop();
+			curr=PQ.top().second;PQ.pop();
 		}while(!PQ.empty()&&visited[curr]);
-		if(visited[curr]) break;
-		
+		if(visited[curr]) continue;
 		visited[curr]=true;
-		for(auto &p: v[curr]){
+		
+		for(auto &p:adj[curr]){
 			int next=p.first,d=p.second;
 			if(dist[next]>dist[curr]+d){
 				dist[next]=dist[curr]+d;
