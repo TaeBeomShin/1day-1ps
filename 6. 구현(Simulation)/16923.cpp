@@ -1,6 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+/*
+	완전탐색 조합응용. - 문자열의 길이가 26미만인경우와 26인 경우를 나누어 생각.
+	
+	1. 26미만 인 경우: 사용하지 않은 문자중 우선순위 높은걸 추가한다.
+	2. 26인 경우 : next_permutation을 통해 다음에 올 문자열이 있는지 체크해서 반환한다. 
+*/
 int cnt[26]={0,};
 char word[26]={0,};
 int main(){
