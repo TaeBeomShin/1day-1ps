@@ -1,7 +1,14 @@
 #include<bits/stdc++.h>
 #define P pair<int,int>
 using namespace std; 
-
+/*
+	다익스트라 기본구현 - 1916
+	
+	다익스트라 경로탐색 알고리즘 기본구현
+	
+	- pair<int,int> 를 P로 define해서 더 깔끔하게 코드를 작성할 수 있다.
+	- for(;;)문 보다 for (:)문을 이용해서 가독성이 더 좋은 코드를 작성할 수 있다. 
+*/
 int main(){
 	int n,m;cin>>n>>m;
 	vector<P> adj[n+1];
