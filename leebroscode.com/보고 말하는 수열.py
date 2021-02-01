@@ -1,6 +1,4 @@
-n=int(input())
-
-num='1';
+n,num=int(input()),'1'
 
 dict={}
 if(n==1): print('1')
