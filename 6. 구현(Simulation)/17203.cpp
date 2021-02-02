@@ -1,7 +1,11 @@
 #include<bits/stdc++.h>
 #define fastio ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0)
 using namespace std;
-
+/*
+	BOJ 17203  
+	
+	누적합 기본 응용. - 누적합을 두번 응용. 
+*/
 int arr[1002]={0,};
 int var[1002]={0,};
 int psum[1002]={0,};

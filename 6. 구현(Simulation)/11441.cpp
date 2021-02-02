@@ -1,7 +1,11 @@
 #include<bits/stdc++.h>
 #define fastio ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0)
 using namespace std;
-
+/*
+	BOJ 11441 합구하기
+	
+	누적합 기본. 누적합을 이용해서 주어진 구간의합 출력하기. 
+*/
 int psum[100002]={0,};
 int main(){
 	fastio;
