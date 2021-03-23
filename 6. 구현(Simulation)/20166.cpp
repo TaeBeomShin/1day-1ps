@@ -2,58 +2,38 @@
 using namespace std;
 
 int n,m,k;
-int dx[8]={-1,-1,0,1,1,1,0,-1},dy[8]={0,1,1,1,0,-1,-1,-1};
+char board[15][15];
+vector<string> queries;
+map<string,int> answers;
 
-char board[10][10];
-typedef struct{
-	int x;
-	int y;
-	char curc;
-	string curs;
-}info;
+int dx[8]={-1,-1,0,1,1,1,0,-1},dy[8]={0,1,1,1,0,-1,-1,-1};
+void dfs(int x,int y,string s,int len){
+	answers[s]++;
+	if(len==5) return;
+	
+	for(int dir=0;dir<8;dir++){
+		int nx=(x+dx[dir])%n,ny=(y+dy[dir])%m;
+		if(nx<0) nx+=n;
+		if(ny<0) ny+=m;
+		
+		dfs(nx,ny,s+board[nx][ny],len+1);
+	}
+}
 
 int main(){
+	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 	cin>>n>>m>>k;
-	
 	for(int i=0;i<n;i++) cin>>board[i];
 	
-	for(int i=0;i<k;i++){
-		string ans;cin>>ans;
-		
-		int anssize=ans.length();
-		int cnt=0;
-		queue<info> Q;
-		//Ã¹¹®ÀÚ »ðÀÔ.
-		info temp;
-		temp.x=0;temp.y=0;temp.curc=board[0][0];temp.curs=board[0][0];
-		Q.push(temp);
-		
-		while(!Q.empty()){
-			auto cur=Q.front();Q.pop();
-			int cx=cur.x,cy=cur.y;
-			char curalpha=cur.curc;
-			string curstr=cur.curs;
-			
-			if(curstr.length()==anssize){
-				if(curstr==ans) cnt++;
-				continue;
-			}
-			
-			for(int dir=0;dir<8;dir++){
-				int nx=cx+dx[dir],ny=cy+dy[dir];
-				
-				if(nx<0) nx=n-1;
-				if(nx>=n) nx=0;
-				if(ny<0) ny=n-1;
-				if(ny>=m) ny=0;
-				
-				info temp2;
-				string cstr=curstr+board[nx][ny];
-				temp2.x=nx;temp2.y=ny;temp2.curc=board[nx][ny];
-				temp2.curs=cstr;
-				Q.push(temp2);
-			}
+	queries.resize(k);
+	for(int i=0;i<k;i++) cin>>queries[i];
+	
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			dfs(i,j,string(1,board[i][j]),1);
 		}
-		cout<<cnt<<"\n";
 	}
+	
+	for(string god:queries) cout<<answers[god]<<"\n";
+	
 }
